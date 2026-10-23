@@ -8,8 +8,7 @@ import {
   useSpring,
 } from 'motion/react';
 
-const videoUrl =
-  'https://boulevard01.com/new-design/wp-content/themes/boulevard01/public/videos/hero-bg.mp4';
+const videoUrl = '/videos/hero-bg.mp4';
 const posterUrl =
   'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=85';
 
