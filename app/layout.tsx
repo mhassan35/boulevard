@@ -15,7 +15,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Boulevard01 | Luxury Living in Bahria Town Lahore',
+  title: 'Luxury Living in Bahria Town Lahore',
   description:
     'Explore premium residential and commercial developments, investment opportunities, and modern living at Boulevard01 in Bahria Town Lahore.',
 };
