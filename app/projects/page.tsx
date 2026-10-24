@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowDownRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import CustomCursor from '../components/CustomCursor';
 import DevelopmentsSection from '../components/sections/DevelopmentsSection';
 import FooterSection from '../components/sections/FooterSection';
+import PortfolioSection from '../components/sections/PortfolioSection';
+import PageAmbientBackground from '../components/PageAmbientBackground';
 
 export const metadata: Metadata = {
   title: 'Projects | Boulevard01',
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <main className="projects-page">
-      <CustomCursor />
-      <Navbar variant="light" />
+      <Navbar />
+      <PageAmbientBackground />
       <header className="projects-page-hero">
         <div className="section-wrap">
           <span className="eyebrow">THE BOULEVARD COLLECTION</span>
@@ -34,6 +35,7 @@ export default function ProjectsPage() {
           </Link>
         </div>
       </header>
+      <PortfolioSection variant="projects" />
       <DevelopmentsSection />
       <FooterSection />
     </main>

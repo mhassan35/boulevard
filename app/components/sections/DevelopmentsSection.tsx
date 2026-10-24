@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import LoadingImage from '../LoadingImage';
 import Link from 'next/link';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import Reveal from '../Reveal';
@@ -31,7 +31,7 @@ export default function DevelopmentsSection() {
               className="development-image-link"
               aria-label={`View ${project.name}`}
             >
-              <Image
+              <LoadingImage
                 src={project.image}
                 alt={project.alt}
                 width={1200}

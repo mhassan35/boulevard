@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import LoadingImage from '../components/LoadingImage';
 import Link from 'next/link';
 import { ArrowRight, Compass, Eye, MapPin } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import CustomCursor from '../components/CustomCursor';
 import Reveal from '../components/Reveal';
+import PageAmbientBackground from '../components/PageAmbientBackground';
+import FooterSection from '../components/sections/FooterSection';
 import { developments } from '../../lib/data';
 
 export const metadata: Metadata = {
@@ -43,8 +44,8 @@ const philosophy = [
 export default function AboutPage() {
   return (
     <main className="about-page">
-      <CustomCursor />
-      <Navbar variant="light" />
+      <Navbar />
+      <PageAmbientBackground />
 
       <section className="about-hero">
         <div className="about-hero-inner">
@@ -72,7 +73,7 @@ export default function AboutPage() {
 
           <Reveal className="about-hero-art" delay={0.12}>
             <span className="about-stamp about-stamp-top">EST. 2011</span>
-            <Image
+            <LoadingImage
               src={developments[3].image}
               alt="Boulevard01 Grand 15 residential tower"
               width={900}
@@ -81,7 +82,7 @@ export default function AboutPage() {
               priority
             />
             <div className="about-inset-image">
-              <Image
+              <LoadingImage
                 src={developments[0].image}
                 alt="Boulevard01 Grand X mixed-use development"
                 width={440}
@@ -137,7 +138,7 @@ export default function AboutPage() {
                   trust.
                 </p>
               </div>
-              <Image
+              <LoadingImage
                 src={developments[1].image}
                 alt="A Boulevard01 development at dusk"
                 width={800}
@@ -149,7 +150,7 @@ export default function AboutPage() {
               className="about-milestone about-milestone-reverse"
               delay={0.08}
             >
-              <Image
+              <LoadingImage
                 src={developments[2].image}
                 alt="Contemporary Boulevard01 residential architecture"
                 width={800}
@@ -236,7 +237,7 @@ export default function AboutPage() {
           <h2>A team built around trust.</h2>
         </Reveal>
         <Reveal className="about-founder-card" delay={0.08}>
-          <Image
+          <LoadingImage
             src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1100&q=85"
             alt="Boulevard01 founder in a modern office"
             width={720}
@@ -277,7 +278,7 @@ export default function AboutPage() {
             </Link>
           </Reveal>
           <Reveal className="about-featured-image" delay={0.1}>
-            <Image
+            <LoadingImage
               src={developments[1].image}
               alt="Grand 11 at Bahria Town Lahore"
               width={1200}
@@ -287,6 +288,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+      <FooterSection />
     </main>
   );
 }

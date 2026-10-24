@@ -1,17 +1,56 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import LoadingImage from '../LoadingImage';
 import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import Reveal from '../Reveal';
 import { developments } from '../../../lib/data';
 
-export default function PortfolioSection() {
+const pageCopy = {
+  home: {
+    id: 'portfolio',
+    eyebrow: '05 / THE PORTFOLIO',
+    firstLine: 'Made to stand',
+    secondLine: 'above the ordinary.',
+  },
+  about: {
+    id: 'about-portfolio',
+    eyebrow: 'SELECTED DEVELOPMENTS',
+    firstLine: 'Places built',
+    secondLine: 'to last.',
+  },
+  projects: {
+    id: 'projects-gallery',
+    eyebrow: 'THE BOULEVARD COLLECTION',
+    firstLine: 'Find your next',
+    secondLine: 'address.',
+  },
+} as const;
+
+type PortfolioSectionProps = {
+  variant?: keyof typeof pageCopy;
+};
+
+export default function PortfolioSection({ variant = 'home' }: PortfolioSectionProps) {
+  const copy = pageCopy[variant];
   const rail = useRef<HTMLDivElement>(null);
   const section = useRef<HTMLElement>(null);
   const activeIndex = useRef(0);
   const wheelState = useRef({ delta: 0, lockedUntil: 0, resetTimer: 0 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const { scrollXProgress } = useScroll({ container: rail, axis: 'x' });
+  const imageY = useTransform(
+    scrollXProgress,
+    [0, 1],
+    reduceMotion ? [0, 0] : [-24, 24],
+  );
+  const imageScale = useTransform(
+    scrollXProgress,
+    [0, 1],
+    reduceMotion ? [1, 1] : [1.065, 1.095],
+  );
 
   const goTo = useCallback((index: number) => {
     const viewport = rail.current;
@@ -130,14 +169,18 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section className="portfolio-section" id="portfolio" ref={section}>
+    <section
+      className={`portfolio-section image-scroller image-scroller--${variant}`}
+      id={copy.id}
+      ref={section}
+    >
       <div className="section-wrap portfolio-heading">
         <Reveal>
-          <span className="eyebrow">05 / THE PORTFOLIO</span>
+          <span className="eyebrow">{copy.eyebrow}</span>
           <h2>
-            Made to stand
+            {copy.firstLine}
             <br />
-            <em>above the ordinary.</em>
+            <em>{copy.secondLine}</em>
           </h2>
         </Reveal>
         <div className="carousel-controls">
@@ -166,18 +209,36 @@ export default function PortfolioSection() {
         tabIndex={0}
       >
         {developments.map((project, index) => (
-          <article className="portfolio-card" key={project.name}>
-            <Image
-              src={project.image}
-              alt={project.alt}
-              width={1600}
-              height={1100}
-              sizes="(max-width: 760px) 88vw, 70vw"
-              unoptimized
-            />
+          <motion.article
+            className={`portfolio-card${currentIndex === index ? ' is-current' : ''}`}
+            key={project.name}
+            initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.18 }}
+            transition={{
+              duration: reduceMotion ? 0 : 0.7,
+              delay: reduceMotion ? 0 : index * 0.06,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <motion.div
+              className="portfolio-image-motion"
+              style={{ y: imageY, scale: imageScale }}
+            >
+              <LoadingImage
+                src={project.image}
+                alt={project.alt}
+                width={1600}
+                height={1100}
+                sizes="100vw"
+                unoptimized
+              />
+            </motion.div>
             <div className="portfolio-shade" />
             <div className="portfolio-meta">
-              <span>0{index + 1} / 04</span>
+              <span>
+                0{index + 1} / {String(developments.length).padStart(2, '0')}
+              </span>
               <span>
                 <MapPin size={13} />
                 {project.location}
@@ -189,15 +250,18 @@ export default function PortfolioSection() {
                 <h3>{project.name}</h3>
                 <p>{project.highlight}</p>
               </div>
-              <a href="#inquiry" aria-label={`Enquire about ${project.name}`}>
+              <a
+                href={variant === 'home' ? '#inquiry' : `/projects#${project.slug}`}
+                aria-label={`Explore ${project.name}`}
+              >
                 <ArrowUpRight size={22} />
               </a>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
       <div className="portfolio-progress section-wrap">
-        <span>DRAG TO EXPLORE</span>
+        <span>SCROLL OR DRAG TO EXPLORE</span>
         <i />
         <span>FOUR DISTINCT ADDRESSES</span>
       </div>

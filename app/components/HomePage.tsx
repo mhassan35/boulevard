@@ -1,4 +1,3 @@
-import CustomCursor from './CustomCursor';
 import Navbar from './Navbar';
 import HeroSection from './sections/HeroSection';
 import TrustSection from './sections/TrustSection';
@@ -11,23 +10,26 @@ import LocationSection from './sections/LocationSection';
 import TestimonialsSection from './sections/TestimonialsSection';
 import ClosingSection from './sections/ClosingSection';
 import FooterSection from './sections/FooterSection';
+import SectionGradient from './SectionGradient';
 
 export default function HomePage() {
   return (
-    <main>
-      <CustomCursor />
+    <main className="home-page">
       <Navbar />
       <HeroSection />
-      <TrustSection />
-      <WhyBoulevardSection />
-      <DevelopmentsSection />
-      <AmenitiesSection />
-      <PortfolioSection />
-      <TestimonialsSection />
-      <LocationSection />
-      <InquirySection />
-      <ClosingSection />
-      <FooterSection />
+      <div className="landing-content">
+        <SectionGradient />
+        <WhyBoulevardSection />
+        <DevelopmentsSection />
+        <AmenitiesSection />
+        <TrustSection />
+        <PortfolioSection />
+        <TestimonialsSection />
+        <LocationSection />
+        <InquirySection />
+        <ClosingSection />
+        <FooterSection />
+      </div>
     </main>
   );
 }

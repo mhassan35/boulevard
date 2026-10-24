@@ -4,26 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowDownRight, ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import LoadingImage from './LoadingImage';
 import { navigation, properties } from '../../lib/data';
 
-export default function Navbar({
-  variant = 'default',
-}: {
-  variant?: 'default' | 'light';
-}) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const projectsRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const updateScrolled = () => setScrolled(window.scrollY > 36);
-
-    updateScrolled();
-    window.addEventListener('scroll', updateScrolled, { passive: true });
-    return () => window.removeEventListener('scroll', updateScrolled);
-  }, []);
 
   useEffect(() => {
     if (!projectsOpen) return;
@@ -52,7 +40,7 @@ export default function Navbar({
 
   return (
     <header
-      className={`site-header${variant === 'light' ? ' is-light' : ''}${scrolled ? ' is-scrolled' : ''}${open ? ' menu-open' : ''}`}
+      className={`site-header${open ? ' menu-open' : ''}`}
     >
       <Link
         className="brand"
@@ -176,13 +164,15 @@ export default function Navbar({
                           key={property.name}
                           onClick={closeNavigation}
                         >
-                          <span
+                          <LoadingImage
+                            shellClassName="project-menu-image-shell"
                             className="project-menu-image"
-                            style={{
-                              backgroundImage: `url(${property.image})`,
-                            }}
-                            role="img"
-                            aria-label={property.alt}
+                            src={property.image}
+                            alt={property.alt}
+                            width={600}
+                            height={400}
+                            sizes="220px"
+                            unoptimized
                           />
                           <span className="project-menu-card-copy">
                             <strong>{property.name}</strong>

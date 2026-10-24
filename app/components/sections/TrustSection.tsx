@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import LoadingImage from '../LoadingImage';
 import Reveal from '../Reveal';
 
 const metrics = [
@@ -21,7 +21,7 @@ export default function TrustSection() {
       </div>
       <div className="founder-layout">
         <Reveal className="founder-photo-wrap">
-          <Image
+          <LoadingImage
             className="founder-photo"
             src="https://boulevard01.com/new-design/wp-content/themes/boulevard01/public/images/ceo.jpg"
             alt="Boulevard founder in a modern office"
