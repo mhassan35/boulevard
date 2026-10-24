@@ -1,7 +1,7 @@
 const featureWindows = Array.from({ length: 16 }, (_, row) =>
   Array.from({ length: 3 }, (_, column) => ({
     x: 1092 + column * 39,
-    y: 263 + row * 38,
+    y: 291 + row * 38,
     lit: (row * 7 + column * 5) % 6 < 2,
     delay: ((row * 7 + column * 3) % 12) * 0.35,
   })),
@@ -152,7 +152,7 @@ export default function HeroArchitecture() {
 
         <g className="hero-skyline-feature">
           <path
-            d="M1082 900V248l63-112 64 112v652h-127Z"
+            d="M1082 900V276l63-100 64 100v624h-127Z"
             fill="url(#tower-fill-feature)"
             stroke="#C0CBD2"
             strokeOpacity=".58"
@@ -186,7 +186,7 @@ export default function HeroArchitecture() {
               )}
             </g>
           ))}
-          <path d="M1145 137v763M1094 272h103M1094 318h103M1094 364h103M1094 410h103M1094 456h103M1094 502h103M1094 548h103M1094 594h103M1094 640h103M1094 686h103M1094 732h103M1094 778h103M1094 824h103" stroke="#C5CFD4" strokeOpacity=".26" strokeWidth="1" />
+          <path d="M1145 177v723M1094 300h103M1094 346h103M1094 392h103M1094 438h103M1094 484h103M1094 530h103M1094 576h103M1094 622h103M1094 668h103M1094 714h103M1094 760h103M1094 806h103M1094 852h103" stroke="#C5CFD4" strokeOpacity=".26" strokeWidth="1" />
         </g>
 
         <g className="hero-skyline-side">
