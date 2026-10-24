@@ -1,22 +1,21 @@
 import { ArrowDownRight } from 'lucide-react';
-import HeroArchitecture from '../HeroArchitecture';
 import Reveal from '../Reveal';
 
+const separator = String.fromCharCode(183);
+
 const heroProjects = [
-  ['Grand X', 'Studio · 1 Bed · Commercial'],
-  ['Grand 11', 'Studio · 1 Bed · Commercial'],
-  ['Grand 14', '1 Bed · 2 Bed · Commercial'],
-  ['Grand 15', '1 Bed · 2 Bed · 3 Bed · Commercial'],
+  ['Grand X', `Studio ${separator} 1 Bed ${separator} Commercial`],
+  ['Grand 11', `Studio ${separator} 1 Bed ${separator} Commercial`],
+  ['Grand 14', `1 Bed ${separator} 2 Bed ${separator} Commercial`],
+  ['Grand 15', `1 Bed ${separator} 2 Bed ${separator} 3 Bed ${separator} Commercial`],
 ];
 
 export default function HeroSection() {
   return (
     <section className="hero modern-hero" id="home">
-      <HeroArchitecture />
-      <div className="hero-grain" />
       <div className="modern-hero-content">
         <Reveal className="modern-eyebrow">
-          Luxury living <i>·</i> Bahria Town Lahore
+          Luxury living <i>{separator}</i> Bahria Town Lahore
         </Reveal>
         <Reveal delay={0.1}>
           <h1>
@@ -61,7 +60,7 @@ export default function HeroSection() {
         ))}
       </div>
       <span className="hero-caption">
-        BAHRIA TOWN · LAHORE <i>01 / 10</i>
+        BAHRIA TOWN <i>{separator}</i> LAHORE <i>01 / 10</i>
       </span>
     </section>
   );
