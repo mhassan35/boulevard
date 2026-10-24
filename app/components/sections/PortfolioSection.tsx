@@ -44,12 +44,12 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
   const imageY = useTransform(
     scrollXProgress,
     [0, 1],
-    reduceMotion ? [0, 0] : [-24, 24],
+    reduceMotion ? [0, 0] : [-12, 12],
   );
   const imageScale = useTransform(
     scrollXProgress,
     [0, 1],
-    reduceMotion ? [1, 1] : [1.065, 1.095],
+    reduceMotion ? [1, 1] : [1.035, 1.05],
   );
 
   const goTo = useCallback((index: number) => {
@@ -146,7 +146,7 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
 
       if (Math.abs(state.delta) >= 42) {
         state.delta = 0;
-        state.lockedUntil = now + 620;
+        state.lockedUntil = now + 760;
         goTo(targetIndex);
       }
     };
@@ -163,7 +163,7 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
   }, [goTo]);
 
   const move = (direction: number) => {
-    wheelState.current.lockedUntil = performance.now() + 620;
+    wheelState.current.lockedUntil = performance.now() + 760;
     wheelState.current.delta = 0;
     goTo(activeIndex.current + direction);
   };
