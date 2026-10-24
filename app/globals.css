@@ -5087,3 +5087,75 @@ button {
     height: 280px;
   }
 }
+
+/* Refined stat cards for the homepage CEO section. */
+.home-page .trust-metrics {
+  gap: clamp(12px, 1.5vw, 20px);
+}
+.home-page .trust-metrics .metric-card {
+  position: relative;
+  min-height: 166px;
+  align-content: center;
+  gap: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(205, 218, 240, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(92, 121, 166, 0.16), transparent 66%),
+    linear-gradient(155deg, rgba(22, 32, 48, 0.98), rgba(10, 13, 19, 0.98));
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(245, 242, 235, 0.08);
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+.home-page .trust-metrics .metric-card::before {
+  position: absolute;
+  top: 0;
+  left: 24%;
+  width: 52%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(205, 218, 240, 0.72), transparent);
+  content: '';
+}
+.home-page .trust-metrics .metric-card strong {
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 1;
+}
+.home-page .trust-metrics .metric-card span {
+  color: rgba(205, 218, 240, 0.7);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.home-page .trust-metrics .metric-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(205, 218, 240, 0.38);
+  box-shadow:
+    0 26px 54px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(53, 91, 148, 0.12),
+    inset 0 1px 0 rgba(245, 242, 235, 0.12);
+}
+@media (max-width: 760px) {
+  .home-page .trust-metrics .metric-card {
+    min-height: 136px;
+    gap: 9px;
+    border-radius: 16px;
+  }
+  .home-page .trust-metrics .metric-card span {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-page .trust-metrics .metric-card {
+    transition: none;
+  }
+  .home-page .trust-metrics .metric-card:hover {
+    transform: none;
+  }
+}
