@@ -1139,12 +1139,22 @@ button {
   isolation: isolate;
   background: #101b2e;
 }
+@keyframes hero-button-shadow {
+  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18); }
+  50% { box-shadow: 0 9px 25px rgba(0, 0, 0, 0.36), 0 0 12px rgba(235, 196, 118, 0.18); }
+}
+.modern-hero-actions .button {
+  animation: hero-button-shadow 3s ease-in-out infinite;
+}
+.modern-hero-actions .button:nth-child(2) {
+  animation-delay: 0.45s;
+}
 .modern-hero::before {
   position: absolute;
   z-index: 0;
   inset: 0;
   background-image:
-    linear-gradient(rgba(7, 9, 13, 0.56), rgba(7, 9, 13, 0.56)),
+    linear-gradient(rgba(7, 9, 13, 0.44), rgba(7, 9, 13, 0.44)),
     radial-gradient(ellipse at center, transparent 32%, rgba(5, 7, 11, 0.3) 100%),
     linear-gradient(90deg, rgba(7, 9, 13, 0.82) 0%, rgba(8, 10, 14, 0.46) 38%, rgba(8, 10, 14, 0.06) 82%),
     linear-gradient(0deg, rgba(8, 9, 11, 0.5), transparent 54%),
@@ -3748,22 +3758,13 @@ button {
   width: min(52vw, 620px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(209, 183, 127, 0.09) 0%,
-    rgba(151, 176, 195, 0.045) 32%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(209, 183, 127, 0.09) 0%, rgba(151, 176, 195, 0.045) 32%, transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
-  transform: translate3d(
-      var(--home-pointer-x, 50vw),
-      var(--home-pointer-y, 50vh),
-      0
-    )
-    translate(-50%, -50%);
-  transition: transform 75ms ease-out;
-  will-change: transform;
+  opacity: var(--home-pointer-opacity, 0);
+  transform: translate3d(var(--home-pointer-x, 50vw), var(--home-pointer-y, 50vh), 0) translate(-50%, -50%);
+  transition: transform 75ms ease-out, opacity 120ms ease-out;
+  will-change: transform, opacity;
 }
 .home-page .trust-section,
 .home-page .developments-section,
@@ -3860,11 +3861,6 @@ button {
 .home-page .map-label,
 .home-page .map-scale {
   color: rgba(245, 242, 235, 0.68);
-}
-@media (prefers-reduced-motion: reduce) {
-  .home-page::after {
-    display: none;
-  }
 }
 
 .landing-content {
