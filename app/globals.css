@@ -89,10 +89,13 @@ button {
   place-items: center;
   font: 25px var(--serif);
   letter-spacing: -0.1em;
+  overflow: hidden;
+  line-height: 1;
   padding-right: 3px;
 }
 .brand-monogram span {
   color: var(--coral);
+  display: none;
 }
 .brand-name {
   font-size: 12px;
@@ -1140,8 +1143,8 @@ button {
   background: #101b2e;
 }
 @keyframes hero-button-shadow {
-  0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18); }
-  50% { box-shadow: 0 9px 25px rgba(0, 0, 0, 0.36), 0 0 12px rgba(235, 196, 118, 0.18); }
+  0%, 100% { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28), 0 0 10px rgba(235, 196, 118, 0.22); }
+  50% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 27px rgba(235, 196, 118, 0.5); }
 }
 .modern-hero-actions .button {
   animation: hero-button-shadow 3s ease-in-out infinite;
@@ -1166,14 +1169,20 @@ button {
 }
 .modern-hero-content {
   position: absolute;
-  top: 21%;
-  left: max(24px, calc((100% - 1240px) / 2));
+  top: 50%;
+  left: 50%;
   z-index: 1;
-  width: min(760px, calc(100% - 48px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(960px, calc(100% - 48px));
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .modern-eyebrow {
   display: flex;
   align-items: center;
+  justify-content: center;
   color: var(--warm-ivory);
   font-size: 11px;
   font-weight: 700;
@@ -1188,9 +1197,9 @@ button {
 .modern-hero h1 {
   margin: 27px 0 18px;
   color: var(--warm-ivory);
-  font-size: clamp(58px, 7.2vw, 106px);
+  font-size: clamp(58px, 6vw, 92px);
   font-weight: 600;
-  line-height: 0.94;
+  line-height: 1.02;
   letter-spacing: -0.065em;
 }
 .modern-hero h1 em {
@@ -1200,6 +1209,7 @@ button {
 }
 .modern-hero-copy {
   max-width: 500px;
+  margin-inline: auto;
   color: rgba(255, 255, 255, 0.84);
   font-size: 15px;
   line-height: 1.8;
@@ -1210,6 +1220,9 @@ button {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 25px;
+}
+.modern-hero-actions {
+  justify-content: center;
 }
 .button {
   min-height: 48px;
@@ -1253,11 +1266,14 @@ button {
 .hero-metrics {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
   gap: 34px;
   margin-top: 38px;
 }
 .hero-metrics div {
   display: grid;
+  justify-items: center;
   gap: 5px;
 }
 .hero-metrics strong {
@@ -1272,11 +1288,11 @@ button {
 }
 .hero-project-links {
   position: absolute;
-  right: max(24px, calc((100% - 1240px) / 2));
-  bottom: 78px;
+  right: 24px;
+  bottom: 20px;
   z-index: 1;
   display: grid;
-  width: min(295px, 26%);
+  width: min(220px, 20%);
   padding: 5px 16px;
   border: 1px solid rgba(220, 226, 232, 0.2);
   border-radius: 12px;
@@ -1308,7 +1324,7 @@ button {
 .hero-caption {
   position: absolute;
   bottom: 30px;
-  left: max(24px, calc((100% - 1240px) / 2));
+  left: 24px;
   z-index: 1;
   display: flex;
   gap: 8px;
@@ -1559,6 +1575,8 @@ button {
   font-size: clamp(200px, 36vw, 520px);
   font-weight: 700;
   letter-spacing: -0.1em;
+  overflow: hidden;
+  line-height: 1;
   line-height: 0.8;
   pointer-events: none;
 }
@@ -2267,12 +2285,13 @@ button {
 }
 @media (max-width: 900px) {
   .modern-hero-content {
-    top: 18%;
-    left: 22px;
+    top: 25%;
+    left: 50%;
     width: calc(100% - 44px);
+    transform: translateX(-50%);
   }
   .modern-hero h1 {
-    font-size: clamp(51px, 13vw, 72px);
+    font-size: clamp(48px, 10vw, 68px);
   }
   .modern-hero-copy {
     font-size: 13px;
@@ -2358,9 +2377,9 @@ button {
   }
   .modern-hero-content {
     top: 28%;
-    left: 22px;
+    left: 50%;
     width: calc(100% - 44px);
-    transform: none;
+    transform: translateX(-50%);
   }
   .modern-hero h1 {
     font-size: clamp(58px, 13vw, 76px);
@@ -4928,5 +4947,36 @@ button {
   }
   .home-page .trust-metrics .metric-card:hover {
     transform: none;
+  }
+}
+
+/* Keep hero copy clear of the featured-project panel at every breakpoint. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .modern-hero-content {
+    left: 42%;
+    width: min(760px, calc(100% - 280px));
+  }
+}
+@media (max-width: 900px) {
+  .modern-hero {
+    display: flex;
+    height: auto;
+    min-height: max(100svh, 820px);
+    align-items: center;
+    justify-content: center;
+    padding: 100px 22px 235px;
+  }
+  .modern-hero-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin: auto 0;
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .modern-hero {
+    padding: 88px 22px 235px;
   }
 }

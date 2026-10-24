@@ -21,7 +21,9 @@ export default function HeroSection() {
           <h1>
             Live where
             <br />
-            luxury meets <em>lifestyle.</em>
+            luxury meets
+            <br />
+            <em>lifestyle.</em>
           </h1>
         </Reveal>
         <Reveal delay={0.2} className="modern-hero-copy">
