@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingImage from '../LoadingImage';
@@ -26,36 +26,22 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageStates, setImageStates] = useState<Record<string, "loading" | "loaded" | "error">>({});
 
-  const goTo = useCallback((index: number) => {
-    const element = section.current;
-    if (!element) return;
 
-    const target = Math.max(0, Math.min(index, slides.length - 1));
-    const instance = trigger.current;
-    const top = instance
-      ? instance.start + ((instance.end - instance.start) * target) / (slides.length - 1)
-      : element.getBoundingClientRect().top + window.scrollY;
-
-    window.scrollTo({
-      top,
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ? 'instant'
-        : 'smooth',
-    });
-  }, []);
-
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = section.current;
     if (!element) return;
 
     gsap.registerPlugin(ScrollTrigger);
     const cards = gsap.utils.toArray<HTMLElement>('.portfolio-card', element);
     if (!cards.length) return;
+    const images = gsap.utils.toArray<HTMLImageElement>('.portfolio-image-motion img', element);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const initialImageScale = reduceMotion ? 1 : 1.12;
 
     const context = gsap.context(() => {
       gsap.set(cards, { autoAlpha: 0 });
       gsap.set(cards[0], { autoAlpha: 1 });
+      gsap.set(images, { scale: initialImageScale });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -64,13 +50,7 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
           pinSpacing: true,
           start: 'top top',
           end: () => `+=${window.innerHeight * (slides.length - 1)}`,
-          scrub: true,
-          snap: {
-            snapTo: 'labelsDirectional',
-            delay: 0.03,
-            duration: { min: 0.15, max: 0.35 },
-            ease: 'power2.inOut',
-          },
+          scrub: reduceMotion ? true : 0.6,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -86,12 +66,20 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
 
       trigger.current = timeline.scrollTrigger ?? null;
       timeline.addLabel('slide-01', 0);
+      if (!reduceMotion) {
+        timeline.to(images[0], { scale: 1, duration: 1 }, 0);
+      }
+
       cards.slice(1).forEach((card, offset) => {
         const index = offset + 1;
         timeline
           .to(cards[index - 1], { autoAlpha: 0, duration: 1 }, offset)
           .fromTo(card, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, offset)
           .addLabel(`slide-${String(index + 1).padStart(2, '0')}`, index);
+
+        if (!reduceMotion) {
+          timeline.to(images[index], { scale: 1, duration: 1 }, offset);
+        }
       });
 
     }, element);
