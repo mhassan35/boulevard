@@ -4028,7 +4028,7 @@ button {
 .image-scroller .portfolio-title {
   position: absolute;
   z-index: 2;
-  top: 52%;
+  top: calc(52% + clamp(20px, 4vh, 38px));
   left: 50%;
   width: min(760px, calc(100% - 48px));
   transform: translate(-50%, -50%);
@@ -4054,7 +4054,7 @@ button {
   position: absolute;
   z-index: 3;
   right: auto;
-  bottom: 25px;
+  bottom: clamp(48px, 6vh, 60px);
   left: 50%;
   width: min(420px, calc(100% - 48px));
   display: flex;
@@ -4112,7 +4112,7 @@ button {
     line-height: 1.45;
   }
   .image-scroller .portfolio-title {
-    top: 50%;
+    top: calc(50% + clamp(18px, 4vh, 30px));
     left: 50%;
     width: calc(100% - 36px);
     transform: translate(-50%, -50%);
@@ -4126,7 +4126,7 @@ button {
   }
   .image-scroller .portfolio-progress {
     right: auto;
-    bottom: 27px;
+    bottom: 48px;
     left: 50%;
     width: calc(100% - 36px);
     gap: 8px;
