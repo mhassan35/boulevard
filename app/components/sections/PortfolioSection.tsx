@@ -4,27 +4,20 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import LoadingImage from '../LoadingImage';
 import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import Reveal from '../Reveal';
 import { developments } from '../../../lib/data';
 
 const pageCopy = {
   home: {
     id: 'portfolio',
-    eyebrow: '05 / THE PORTFOLIO',
-    firstLine: 'Made to stand',
-    secondLine: 'above the ordinary.',
+    eyebrow: 'THE PORTFOLIO',
   },
   about: {
     id: 'about-portfolio',
     eyebrow: 'SELECTED DEVELOPMENTS',
-    firstLine: 'Places built',
-    secondLine: 'to last.',
   },
   projects: {
     id: 'projects-gallery',
     eyebrow: 'THE BOULEVARD COLLECTION',
-    firstLine: 'Find your next',
-    secondLine: 'address.',
   },
 } as const;
 
@@ -174,15 +167,8 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
       id={copy.id}
       ref={section}
     >
-      <div className="section-wrap portfolio-heading">
-        <Reveal>
-          <span className="eyebrow">{copy.eyebrow}</span>
-          <h2>
-            {copy.firstLine}
-            <br />
-            <em>{copy.secondLine}</em>
-          </h2>
-        </Reveal>
+      <div className="portfolio-heading">
+        <span className="portfolio-label">{copy.eyebrow}</span>
         <div className="carousel-controls">
           <button
             type="button"
@@ -236,17 +222,23 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
             </motion.div>
             <div className="portfolio-shade" />
             <div className="portfolio-meta">
-              <span>
-                0{index + 1} / {String(developments.length).padStart(2, '0')}
-              </span>
-              <span>
-                <MapPin size={13} />
-                {project.location}
-              </span>
+              <div className="portfolio-meta-side portfolio-meta-left">
+                <span>
+                  <MapPin size={13} /> LOCATION
+                </span>
+                <strong>{project.location}</strong>
+              </div>
+              <div className="portfolio-meta-side portfolio-meta-right">
+                <span>{project.status}</span>
+                <strong>{project.units.join(' · ')}</strong>
+              </div>
             </div>
             <div className="portfolio-title">
               <div>
-                <span>{project.status}</span>
+                <span>
+                  {String(index + 1).padStart(2, '0')} /{' '}
+                  {String(developments.length).padStart(2, '0')}
+                </span>
                 <h3>{project.name}</h3>
                 <p>{project.highlight}</p>
               </div>
@@ -254,16 +246,19 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
                 href={variant === 'home' ? '#inquiry' : `/projects#${project.slug}`}
                 aria-label={`Explore ${project.name}`}
               >
-                <ArrowUpRight size={22} />
+                Explore project <ArrowUpRight size={16} />
               </a>
             </div>
           </motion.article>
         ))}
       </div>
       <div className="portfolio-progress section-wrap">
-        <span>SCROLL OR DRAG TO EXPLORE</span>
-        <i />
-        <span>FOUR DISTINCT ADDRESSES</span>
+        <span>{String(currentIndex + 1).padStart(2, '0')}</span>
+        <i aria-hidden="true">
+          <b style={{ width: `${((currentIndex + 1) / developments.length) * 100}%` }} />
+        </i>
+        <span>{String(developments.length).padStart(2, '0')}</span>
+        <small>SCROLL OR DRAG</small>
       </div>
     </section>
   );

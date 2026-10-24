@@ -243,36 +243,35 @@ button {
   overflow: hidden;
   background: var(--midnight-navy);
 }
-.hero-halo {
+.hero-birds {
   isolation: isolate;
 }
-.hero-halo .vanta-canvas {
+.hero-birds .vanta-canvas {
   display: block;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 12%, rgba(0, 0, 0, 0.2) 40%, #000 68%);
 }
-.hero-halo::after {
+.hero-birds::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.08) 55%, transparent),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.34), transparent 58%);
+    linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.82) 30%, rgba(0, 0, 0, 0.1) 73%, transparent),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.45), transparent 58%);
 }
-.hero-halo-fallback {
+.hero-birds-fallback {
   background:
-    radial-gradient(ellipse at 62% 48%, rgba(196, 164, 106, 0.2), transparent 38%),
+    radial-gradient(ellipse at 68% 48%, rgba(95, 126, 177, 0.28), transparent 38%),
     var(--midnight-navy);
 }
 .hero-grain {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: 0.11;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
 }
 .hero-content {
   position: absolute;
@@ -3139,8 +3138,8 @@ button {
 .about-page,
 .projects-page {
   padding-top: 1px;
-  background: var(--warm-ivory);
-  color: var(--onyx-black);
+  background: #020202;
+  color: var(--warm-ivory);
 }
 .about-hero {
   min-height: 820px;
@@ -4087,9 +4086,9 @@ button {
 .home-page .hero-media {
   background: #000;
 }
-.home-page .hero-halo-fallback {
+.home-page .hero-birds-fallback {
   background:
-    radial-gradient(ellipse at 62% 48%, rgba(196, 164, 106, 0.2), transparent 38%),
+    radial-gradient(ellipse at 68% 48%, rgba(95, 126, 177, 0.28), transparent 38%),
     #000;
 }
 
@@ -4467,34 +4466,44 @@ button {
 .image-scroller .portfolio-heading {
   position: absolute;
   z-index: 3;
-  top: clamp(148px, 17vh, 190px);
-  right: max(24px, calc((100vw - 1240px) / 2));
-  left: max(24px, calc((100vw - 1240px) / 2));
-  width: auto;
+  top: clamp(96px, 11vh, 126px);
+  left: 50%;
+  display: flex;
+  width: min(1240px, calc(100% - 48px));
+  justify-content: center;
   padding: 0;
   margin: 0;
-  align-items: flex-start;
+  transform: translateX(-50%);
   pointer-events: none;
 }
-.image-scroller .portfolio-heading > *,
+.image-scroller .portfolio-label,
 .image-scroller .carousel-controls,
 .image-scroller .carousel-controls button {
   pointer-events: auto;
 }
-.image-scroller .portfolio-heading h2 {
-  max-width: min(70vw, 760px);
-  margin: 12px 0 0;
-  color: var(--warm-ivory);
-  font-size: clamp(38px, 5vw, 66px);
-  line-height: 0.98;
-  text-shadow: 0 3px 26px rgba(0, 0, 0, 0.45);
-}
-.image-scroller .portfolio-heading h2 em {
-  color: rgba(205, 218, 240, 0.84);
+.image-scroller .portfolio-label {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  border: 1px solid rgba(205, 218, 240, 0.24);
+  border-radius: 999px;
+  background: rgba(6, 9, 15, 0.62);
+  color: rgba(205, 218, 240, 0.9);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-align: center;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
 }
 .image-scroller .carousel-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
   gap: 10px;
-  padding-top: 7px;
+  padding: 0;
 }
 .image-scroller .carousel-controls button {
   width: 48px;
@@ -4558,84 +4567,155 @@ button {
   opacity: 0.92;
 }
 .image-scroller .portfolio-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.58), transparent 35%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.88), transparent 65%),
-    linear-gradient(90deg, rgba(5, 8, 14, 0.54), transparent 72%);
+    linear-gradient(180deg, rgba(2, 2, 2, 0.64) 0%, rgba(2, 2, 2, 0.12) 28%, rgba(2, 2, 2, 0.16) 58%, rgba(2, 2, 2, 0.78) 100%),
+    linear-gradient(90deg, rgba(2, 2, 2, 0.76) 0%, rgba(2, 2, 2, 0.24) 25%, rgba(2, 2, 2, 0.12) 72%, rgba(2, 2, 2, 0.72) 100%);
+  pointer-events: none;
 }
 .image-scroller .portfolio-meta {
+  position: absolute;
   z-index: 2;
-  inset: 98px max(24px, calc((100vw - 1240px) / 2)) auto;
-  gap: 12px;
-  color: rgba(245, 242, 235, 0.86);
-  font-size: 10px;
-}
-.image-scroller .portfolio-meta > span {
-  display: inline-flex;
-  min-height: 34px;
+  inset: 50% max(34px, calc((100vw - 1660px) / 2)) auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transform: translateY(-50%);
+  color: rgba(245, 242, 235, 0.82);
+  font-size: 9px;
+}
+.image-scroller .portfolio-meta-side {
+  display: grid;
+  max-width: min(16vw, 250px);
   gap: 7px;
-  padding: 0 12px;
-  border: 1px solid rgba(205, 218, 240, 0.22);
-  border-radius: 999px;
-  background: rgba(8, 10, 15, 0.44);
-  backdrop-filter: blur(12px);
+  text-transform: uppercase;
+}
+.image-scroller .portfolio-meta-side > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(205, 218, 240, 0.78);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+.image-scroller .portfolio-meta-side strong {
+  color: rgba(245, 242, 235, 0.72);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.65;
+}
+.image-scroller .portfolio-meta-right {
+  text-align: right;
+}
+.image-scroller .portfolio-meta-right > span,
+.image-scroller .portfolio-meta-right > strong {
+  justify-content: end;
 }
 .image-scroller .portfolio-title {
+  position: absolute;
   z-index: 2;
-  right: clamp(24px, 8vw, 120px);
-  bottom: clamp(88px, 13vh, 140px);
-  left: clamp(24px, 8vw, 120px);
-  align-items: flex-end;
-  gap: 24px;
+  top: 48%;
+  right: 50%;
+  bottom: auto;
+  left: 50%;
+  display: block;
+  width: min(650px, 52vw);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 .image-scroller .portfolio-title > div {
-  max-width: min(760px, 78vw);
+  max-width: none;
 }
 .image-scroller .portfolio-title span {
   color: rgba(205, 218, 240, 0.86);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
 }
 .image-scroller .portfolio-title h3 {
-  margin: 10px 0 12px;
+  margin: 12px 0 14px;
   color: var(--warm-ivory);
-  font-size: clamp(58px, 10vw, 132px);
-  line-height: 0.88;
-  text-shadow: 0 4px 36px rgba(0, 0, 0, 0.3);
+  font-size: clamp(58px, 9vw, 116px);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  line-height: 0.95;
+  text-shadow: 0 4px 42px rgba(0, 0, 0, 0.52);
 }
 .image-scroller .portfolio-title p {
-  max-width: 600px;
+  max-width: 440px;
+  margin: 0 auto;
   color: rgba(245, 242, 235, 0.84);
-  font-size: clamp(13px, 1.2vw, 16px);
+  font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.65;
 }
 .image-scroller .portfolio-title > a {
-  width: 62px;
-  height: 62px;
+  display: inline-flex;
+  width: auto;
+  height: 42px;
+  place-items: center;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 0 18px;
+  border-radius: 999px;
   border: 1px solid rgba(205, 218, 240, 0.34);
-  background: rgba(16, 27, 46, 0.82);
+  background: rgba(8, 10, 15, 0.55);
   color: var(--warm-ivory);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   backdrop-filter: blur(12px);
 }
 .image-scroller .portfolio-title > a:hover {
   transform: none;
-  background: rgba(16, 27, 46, 0.82);
+  background: rgba(8, 10, 15, 0.55);
   color: var(--warm-ivory);
 }
 .image-scroller .portfolio-progress {
   position: absolute;
   z-index: 3;
-  right: max(24px, calc((100vw - 1240px) / 2));
-  bottom: 24px;
-  left: max(24px, calc((100vw - 1240px) / 2));
-  width: auto;
+  right: auto;
+  bottom: 25px;
+  left: 50%;
+  width: min(420px, calc(100% - 48px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   padding: 0;
+  transform: translateX(-50%);
   color: rgba(245, 242, 235, 0.78);
   font-size: 9px;
+  letter-spacing: 0.12em;
 }
 .image-scroller .portfolio-progress i {
-  flex: 1;
-  max-width: 220px;
-  background: rgba(205, 218, 240, 0.52);
+  display: block;
+  width: clamp(110px, 16vw, 210px);
+  height: 2px;
+  overflow: hidden;
+  background: rgba(205, 218, 240, 0.3);
+}
+.image-scroller .portfolio-progress i b {
+  display: block;
+  height: 100%;
+  background: rgba(205, 218, 240, 0.9);
+  transition: width 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.image-scroller .portfolio-progress small {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  color: rgba(245, 242, 235, 0.55);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  transform: translateX(-50%);
 }
 @media (max-width: 760px) {
   .image-scroller,
@@ -4643,67 +4723,73 @@ button {
     min-height: 560px;
   }
   .image-scroller .portfolio-heading {
-    top: 132px;
-    right: 20px;
-    left: 20px;
-    gap: 12px;
+    top: 96px;
+    width: calc(100% - 36px);
+    justify-content: flex-start;
   }
-  .image-scroller .portfolio-heading h2 {
-    max-width: 58vw;
-    margin-top: 9px;
-    font-size: clamp(34px, 9vw, 50px);
+  .image-scroller .portfolio-label {
+    min-height: 30px;
+    padding-inline: 13px;
+    font-size: 7px;
   }
   .image-scroller .carousel-controls {
-    gap: 6px;
-    padding-top: 0;
+    right: 0;
+  }
+  .image-scroller .carousel-controls {
+    gap: 5px;
   }
   .image-scroller .carousel-controls button {
     width: 40px;
     height: 40px;
   }
   .image-scroller .portfolio-meta {
-    inset: 78px 18px auto;
-    gap: 7px;
-    font-size: 8px;
+    inset: auto 18px 112px;
+    transform: none;
   }
-  .image-scroller .portfolio-meta > span {
-    min-height: 30px;
-    max-width: 62%;
-    overflow: hidden;
-    padding-inline: 9px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .image-scroller .portfolio-meta-side {
+    max-width: 46%;
+    gap: 5px;
+  }
+  .image-scroller .portfolio-meta-side > span {
+    font-size: 7px;
+  }
+  .image-scroller .portfolio-meta-side strong {
+    font-size: 7px;
+    line-height: 1.45;
   }
   .image-scroller .portfolio-title {
-    right: 22px;
-    bottom: 82px;
-    left: 22px;
-    gap: 12px;
+    top: 47%;
+    width: calc(100% - 36px);
   }
   .image-scroller .portfolio-title > div {
-    max-width: calc(100% - 58px);
+    max-width: none;
   }
   .image-scroller .portfolio-title h3 {
-    margin-block: 8px;
-    font-size: clamp(48px, 14vw, 78px);
+    margin-block: 10px 12px;
+    font-size: clamp(52px, 14vw, 82px);
   }
   .image-scroller .portfolio-title p {
     font-size: 12px;
   }
   .image-scroller .portfolio-title > a {
-    width: 46px;
-    height: 46px;
+    height: 38px;
+    margin-top: 16px;
+    padding-inline: 15px;
   }
   .image-scroller .portfolio-progress {
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
+    right: auto;
+    bottom: 27px;
+    left: 50%;
+    width: calc(100% - 36px);
     gap: 8px;
     font-size: 7px;
     letter-spacing: 0.09em;
   }
   .image-scroller .portfolio-progress i {
-    max-width: 52px;
+    width: 95px;
+  }
+  .image-scroller .portfolio-progress small {
+    top: 20px;
   }
 }
 
@@ -4715,10 +4801,10 @@ button {
 }
 .page-ambient-background {
   position: fixed;
-  z-index: 10;
+  z-index: -1;
   inset: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.72;
   background-image:
     radial-gradient(
       850px circle at var(--page-glow-x, 50%) var(--page-glow-y, 45%),
@@ -4741,11 +4827,11 @@ button {
 /* Interior pages use the landing page's black, navy, and ivory palette. */
 .about-page,
 .projects-page {
-  background: #000;
+  background: #020202;
   color: var(--warm-ivory);
 }
 .about-page .about-hero {
-  background-color: #000;
+  background-color: transparent;
   background-image:
     linear-gradient(rgba(205, 218, 240, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(205, 218, 240, 0.045) 1px, transparent 1px);
@@ -4755,11 +4841,11 @@ button {
 .projects-page .projects-page-hero,
 .projects-page .developments-section,
 .projects-page .premium-footer {
-  background: #000;
+  background-color: transparent;
 }
 .about-page .about-milestones,
 .about-page .about-philosophy {
-  background: linear-gradient(180deg, #080d16, #000 85%);
+  background: linear-gradient(180deg, rgba(8, 13, 22, 0.68), rgba(2, 2, 2, 0.46) 85%);
 }
 .about-page :is(
   .about-hero-copy h1,
@@ -4815,7 +4901,7 @@ button {
   color: rgba(205, 218, 240, 0.1);
 }
 .about-page .about-stats {
-  background: #101b2e;
+  background: transparent;
 }
 .about-page .about-team-note {
   background: linear-gradient(145deg, #17243a, #101b2e);
@@ -4846,8 +4932,8 @@ button {
 }
 .projects-page .projects-page-hero {
   background:
-    radial-gradient(ellipse at 80% 20%, rgba(16, 27, 46, 0.8), transparent 52%),
-    #000;
+    radial-gradient(ellipse at 80% 20%, rgba(16, 27, 46, 0.46), transparent 58%),
+    transparent;
 }
 .projects-page .projects-page-hero h1 em {
   color: rgba(205, 218, 240, 0.8);
@@ -4876,7 +4962,7 @@ button {
 }
 .about-page .premium-footer,
 .projects-page .premium-footer {
-  background: #000;
+  background: transparent;
 }
 .about-page .eyebrow,
 .projects-page .eyebrow,
@@ -4891,7 +4977,7 @@ button {
   color: rgba(245, 242, 235, 0.72);
 }
 .projects-page .portfolio-section {
-  background: #000;
+  background: transparent;
 }
 
 /* Reusable loading state for photography throughout the site. */

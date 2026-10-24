@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-export default function HeroHalo() {
+export default function HeroBirds() {
   const hostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,36 +17,37 @@ export default function HeroHalo() {
       if (cancelled || reducedMotion.matches || effect) return;
 
       try {
-        const [threeModule, haloModule] = await Promise.all([
+        const [threeModule, birdsModule] = await Promise.all([
           import('three'),
-          import('vanta/dist/vanta.halo.min.js'),
+          import('vanta/dist/vanta.birds.min.js'),
         ]);
         if (cancelled || reducedMotion.matches) return;
 
-        effect = haloModule.default({
+        effect = birdsModule.default({
           el: host,
           THREE: threeModule,
           backgroundColor: 0x000000,
-          baseColor: 0xc4a46a,
-          color2: 0xf5f2eb,
-          amplitudeFactor: 0.62,
-          ringFactor: 0.82,
-          rotationFactor: 0.62,
-          size: 0.92,
-          speed: 0.42,
-          xOffset: 0.12,
-          yOffset: 0,
+          color1: 0x7893ba,
+          color2: 0xd5deed,
+          colorMode: 'lerpGradient',
+          birdSize: 1.2,
+          wingSpan: 26,
+          speedLimit: 2.5,
+          separation: 22,
+          alignment: 18,
+          cohesion: 14,
+          quantity: 4,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 320,
+          minHeight: 560,
           minWidth: 320,
           scale: 1,
-          scaleMobile: 0.75,
+          scaleMobile: 0.65,
         });
-        host.classList.remove('hero-halo-fallback');
+        host.classList.remove('hero-birds-fallback');
       } catch {
-        host.classList.add('hero-halo-fallback');
+        host.classList.add('hero-birds-fallback');
       }
     };
 
@@ -54,14 +55,14 @@ export default function HeroHalo() {
       if (reducedMotion.matches) {
         effect?.destroy();
         effect = null;
-        host.classList.add('hero-halo-fallback');
+        host.classList.add('hero-birds-fallback');
       } else {
-        host.classList.remove('hero-halo-fallback');
+        host.classList.remove('hero-birds-fallback');
         void start();
       }
     };
 
-    if (reducedMotion.matches) host.classList.add('hero-halo-fallback');
+    if (reducedMotion.matches) host.classList.add('hero-birds-fallback');
     else void start();
     reducedMotion.addEventListener('change', handleMotionPreference);
 
@@ -69,9 +70,9 @@ export default function HeroHalo() {
       cancelled = true;
       reducedMotion.removeEventListener('change', handleMotionPreference);
       effect?.destroy();
-      host.classList.remove('hero-halo-fallback');
+      host.classList.remove('hero-birds-fallback');
     };
   }, []);
 
-  return <div ref={hostRef} className="hero-media hero-halo" aria-hidden="true" />;
+  return <div ref={hostRef} className="hero-media hero-birds" aria-hidden="true" />;
 }
