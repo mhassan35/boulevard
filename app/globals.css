@@ -1563,7 +1563,7 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-bottom: 100px;
+  margin-top: 80px;
 }
 .metric-card {
   display: grid;
@@ -2512,7 +2512,7 @@ button {
     bottom: 60px;
   }
   .trust-metrics {
-    margin-bottom: 70px;
+    margin-top: 64px;
   }
   .founder-layout {
     gap: 38px;
@@ -2605,7 +2605,7 @@ button {
   .trust-metrics {
     grid-template-columns: repeat(2, 1fr);
     gap: 9px;
-    margin-bottom: 65px;
+    margin-top: 50px;
   }
   .metric-card {
     padding: 18px 8px;
@@ -4109,7 +4109,7 @@ button {
   inset: 0;
   background-image:
     radial-gradient(
-      900px circle at var(--landing-glow-x, 50%) var(--landing-glow-y, 50%),
+      620px circle at var(--landing-glow-x, 50%) var(--landing-glow-y, 50%),
       rgba(196, 164, 106, 0.12),
       transparent 72%
     ),
@@ -4807,7 +4807,7 @@ button {
   opacity: 0.72;
   background-image:
     radial-gradient(
-      850px circle at var(--page-glow-x, 50%) var(--page-glow-y, 45%),
+      620px circle at var(--page-glow-x, 50%) var(--page-glow-y, 45%),
       rgba(53, 91, 148, 0.24),
       transparent 72%
     ),

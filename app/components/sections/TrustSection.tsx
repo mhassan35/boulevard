@@ -11,14 +11,6 @@ const metrics = [
 export default function TrustSection() {
   return (
     <section className="trust-section section-wrap" id="about">
-      <div className="trust-metrics" aria-label="Boulevard at a glance">
-        {metrics.map(([value, label]) => (
-          <Reveal className="metric-card" key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </Reveal>
-        ))}
-      </div>
       <div className="founder-layout">
         <Reveal className="founder-photo-wrap">
           <LoadingImage
@@ -59,6 +51,14 @@ export default function TrustSection() {
             <span>CEO &amp; Founder</span>
           </div>
         </Reveal>
+      </div>
+      <div className="trust-metrics" aria-label="Boulevard at a glance">
+        {metrics.map(([value, label]) => (
+          <Reveal className="metric-card" key={label}>
+            <strong>{value}</strong>
+            <span>{label}</span>
+          </Reveal>
+        ))}
       </div>
     </section>
   );
