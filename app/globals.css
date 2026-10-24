@@ -1144,12 +1144,12 @@ button {
   z-index: 0;
   inset: 0;
   background-image:
-    linear-gradient(180deg, rgba(13, 27, 49, 0.48) 0%, rgba(4, 8, 17, 0.62) 100%),
+    linear-gradient(rgba(7, 9, 13, 0.56), rgba(7, 9, 13, 0.56)),
     radial-gradient(ellipse at center, transparent 32%, rgba(5, 7, 11, 0.3) 100%),
     linear-gradient(90deg, rgba(7, 9, 13, 0.82) 0%, rgba(8, 10, 14, 0.46) 38%, rgba(8, 10, 14, 0.06) 82%),
     linear-gradient(0deg, rgba(8, 9, 11, 0.5), transparent 54%),
     linear-gradient(180deg, rgba(10, 16, 26, 0.14), transparent 36%),
-    url('https://images.pexels.com/photos/18559564/pexels-photo-18559564.jpeg?auto=compress&cs=tinysrgb&w=2400');
+    url('https://www.landmarkdevelopers.com.pk/images/grand-15-1.jpg');
   background-position: center, center, center, center, center, 56% 48%;
   background-size: cover;
   content: '';
