@@ -1,5 +1,5 @@
 import { ArrowDownRight } from 'lucide-react';
-import HeroBirds from '../HeroBirds';
+import HeroArchitecture from '../HeroArchitecture';
 import Reveal from '../Reveal';
 
 const heroProjects = [
@@ -12,7 +12,7 @@ const heroProjects = [
 export default function HeroSection() {
   return (
     <section className="hero modern-hero" id="home">
-      <HeroBirds />
+      <HeroArchitecture />
       <div className="hero-grain" />
       <div className="modern-hero-content">
         <Reveal className="modern-eyebrow">
