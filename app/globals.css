@@ -263,6 +263,21 @@ button {
   height: 100%;
   z-index: 0;
 }
+.hero-star {
+  fill: #d8d0bb;
+  opacity: 0.48;
+  animation: star-twinkle 4.8s ease-in-out infinite alternate;
+}
+.hero-star-bright {
+  fill: #f2dfae;
+  opacity: 0.74;
+  filter: drop-shadow(0 0 3px rgba(222, 198, 148, 0.58));
+  animation-duration: 3.7s;
+}
+@keyframes star-twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 0.86; }
+}
 .hero-window-lit {
   transform-box: fill-box;
   transform-origin: center;
@@ -4164,6 +4179,10 @@ button {
   }
   .hero-window-lit,
   .hero-window-lit:nth-child(3n) {
+    animation: none;
+  }
+  .hero-star,
+  .hero-star-bright {
     animation: none;
   }
 }

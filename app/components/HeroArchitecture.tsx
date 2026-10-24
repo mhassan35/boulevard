@@ -44,6 +44,21 @@ const farSideWindows = createWindowGrid({
   x: 1420, y: 497, columns: 4, rows: 12, stepX: 27, stepY: 32, seed: 2,
 });
 
+const skylineStars = [
+  [742, 171, 1.1], [786, 86, 1.7], [823, 218, 1], [858, 128, 1.2],
+  [899, 50, 1.4], [927, 191, 1.1], [966, 104, 2], [1004, 50, 1.1],
+  [1038, 220, 1.4], [1080, 76, 1.1], [1110, 187, 1.1], [1169, 42, 1.8],
+  [1208, 227, 1], [1242, 117, 1.2], [1281, 60, 1.5], [1316, 184, 1],
+  [1358, 91, 1.8], [1391, 231, 1.2], [1430, 40, 1.1], [1474, 145, 1.5],
+  [1512, 78, 1.2], [1550, 202, 1.1], [1583, 112, 1.6], [902, 40, 1],
+  [1055, 153, 1.1], [1271, 30, 1.1], [1455, 60, 1.2], [1530, 28, 1.5],
+].map(([x, y, radius], index) => ({
+  x,
+  y,
+  radius,
+  delay: `${(index % 7) * 0.42}s`,
+}));
+
 function Windows({ windows }: { windows: typeof featureWindows }) {
   return windows.map(({ x, y, lit, delay }) => (
     <g
@@ -106,6 +121,19 @@ export default function HeroArchitecture() {
             <stop offset="1" stopColor="#A8C0D1" stopOpacity="0" />
           </linearGradient>
         </defs>
+
+        <g className="hero-stars">
+          {skylineStars.map(({ x, y, radius, delay }, index) => (
+            <circle
+              key={`${x}-${y}`}
+              className={index % 6 === 0 ? 'hero-star hero-star-bright' : 'hero-star'}
+              cx={x}
+              cy={y}
+              r={radius}
+              style={{ animationDelay: delay }}
+            />
+          ))}
+        </g>
 
         <g className="hero-skyline-distant">
           <path d="M740 900V455l105-54 110 54v445H740Z" fill="url(#tower-fill)" stroke="#AEBCC6" strokeOpacity=".34" strokeWidth="1.5" />
