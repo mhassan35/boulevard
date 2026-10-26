@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import Reveal from '../Reveal';
 import { Card } from '../ui/card';
+import { Badge } from '../ui/badge';
 import { developments } from '../../../lib/data';
 
 export default function DevelopmentsSection() {
@@ -41,7 +42,7 @@ export default function DevelopmentsSection() {
                   sizes="(max-width: 760px) 92vw, 45vw"
                   unoptimized
                 />
-                <span className="status-pill">{project.status}</span>
+                <Badge>{project.status}</Badge>
                 <span className="image-location">
                   <MapPin size={14} />
                   {project.location}

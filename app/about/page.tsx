@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { ArrowRight, Compass, Eye, MapPin } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import { Card } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { buttonVariants } from '../components/ui/button';
 import { developments } from '../../lib/data';
 
 export const metadata: Metadata = {
@@ -57,10 +59,10 @@ export default function AboutPage() {
               delivery.
             </p>
             <div className="about-actions">
-              <Link className="button button-dark" href="/projects">
+              <Link className={buttonVariants({ variant: 'dark', size: 'large' })} href="/projects">
                 Explore Our Projects <ArrowRight size={16} />
               </Link>
-              <a className="button button-outline" href="#our-team">
+              <a className={buttonVariants({ variant: 'outline', size: 'large' })} href="#our-team">
                 Meet the Team
               </a>
             </div>
@@ -277,7 +279,7 @@ export default function AboutPage() {
           <Reveal className="about-featured-copy">
             <span className="eyebrow">SELECTED PORTFOLIO</span>
             <h2>Grand 11</h2>
-            <span className="about-status">NOW SELLING</span>
+            <Badge variant="about">NOW SELLING</Badge>
             <p>
               A prominent commercial and residential development near Talwar
               Chowk and Bahria Town’s main entrance.

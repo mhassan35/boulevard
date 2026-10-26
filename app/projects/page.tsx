@@ -7,6 +7,7 @@ import PortfolioSection from '../components/sections/PortfolioSection';
 import WhyBoulevardSection from '../components/sections/WhyBoulevardSection';
 import Reveal from '../components/Reveal';
 import { Card } from '../components/ui/card';
+import { buttonVariants } from '../components/ui/button';
 import { developments } from '../../lib/data';
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function ProjectsPage() {
               Explore distinctive residential and commercial destinations
               shaped around modern city life and lasting value.
             </p>
-            <Link href="/#inquiry" className="button button-dark">
+            <Link href="/#inquiry" className={buttonVariants({ variant: 'dark', size: 'large' })}>
               Plan a private tour <ArrowDownRight size={16} />
             </Link>
           </div>
@@ -96,7 +97,7 @@ export default function ProjectsPage() {
       <PortfolioSection variant="projects" />
       <DevelopmentsSection />
       <WhyBoulevardSection />
-      <AmenitiesSection />
+      <AmenitiesSection variant="projects" />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import Reveal from '../Reveal';
+import { buttonVariants } from '../ui/button';
 
 export default function LocationSection() {
   return (
@@ -28,7 +29,7 @@ export default function LocationSection() {
           31.3747153° N <i>·</i> 74.1856526° E
         </span>
         <a
-          className="button button-navy"
+          className={buttonVariants({ variant: 'navy' })}
           href="https://maps.google.com/?q=31.3747153,74.1856526"
           target="_blank"
           rel="noreferrer"

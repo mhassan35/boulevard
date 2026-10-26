@@ -18,7 +18,7 @@ export default function HomePage() {
         <SectionGradient />
         <WhyBoulevardSection />
         <DevelopmentsSection />
-        <AmenitiesSection />
+        <AmenitiesSection variant="home" />
         <TrustSection />
         <PortfolioSection />
         <TestimonialsSection />
