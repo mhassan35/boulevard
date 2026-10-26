@@ -31,6 +31,8 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
     const element = section.current;
     if (!element) return;
 
+    let hashScrollFrame = 0;
+    let hashScrollAfterRefreshFrame = 0;
     gsap.registerPlugin(ScrollTrigger);
     const cards = gsap.utils.toArray<HTMLElement>('.portfolio-card', element);
     if (!cards.length) return;
@@ -84,7 +86,31 @@ export default function PortfolioSection({ variant = 'home' }: PortfolioSectionP
 
     }, element);
 
+    const hashTarget = window.location.hash
+      ? document.getElementById(window.location.hash.slice(1))
+      : null;
+    if (hashTarget) {
+      hashScrollFrame = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        hashScrollAfterRefreshFrame = requestAnimationFrame(() => {
+          const scrollPadding =
+            Number.parseFloat(
+              getComputedStyle(document.documentElement).scrollPaddingTop,
+            ) || 0;
+          window.scrollTo({
+            top:
+              hashTarget.getBoundingClientRect().top +
+              window.scrollY -
+              scrollPadding,
+            behavior: 'instant',
+          });
+        });
+      });
+    }
+
     return () => {
+      cancelAnimationFrame(hashScrollFrame);
+      cancelAnimationFrame(hashScrollAfterRefreshFrame);
       trigger.current = null;
       context.revert();
     };

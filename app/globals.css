@@ -2959,6 +2959,12 @@ button {
   }
 }
 
+@media (min-width: 670px) and (max-width: 740px) {
+  .brand-name {
+    @apply hidden;
+  }
+}
+
 /* Unified black palette for the homepage sections */
 .home-page {
   min-height: 100vh;

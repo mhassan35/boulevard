@@ -195,6 +195,15 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </div>
+          ) : item.label === 'Contact' ? (
+            <Link
+              className="nav-link text-[13px] xl:text-sm"
+              key={item.href}
+              href={item.href}
+              onClick={closeNavigation}
+            >
+              {item.label}
+            </Link>
           ) : (
             <Link
               className="nav-link text-[13px] xl:text-sm"
