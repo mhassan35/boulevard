@@ -1,5 +1,8 @@
 ﻿import type { Metadata } from 'next';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
+import Navbar from './components/Navbar';
+import FooterSection from './components/sections/FooterSection';
+import CursorSpotlight from './components/CursorSpotlight';
 import './globals.css';
 
 const manrope = Manrope({
@@ -27,7 +30,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <Navbar />
+        {children}
+        <FooterSection />
+        <CursorSpotlight />
+      </body>
     </html>
   );
 }

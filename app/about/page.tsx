@@ -2,10 +2,8 @@ import type { Metadata } from 'next';
 import LoadingImage from '../components/LoadingImage';
 import Link from 'next/link';
 import { ArrowRight, Compass, Eye, MapPin } from 'lucide-react';
-import Navbar from '../components/Navbar';
 import Reveal from '../components/Reveal';
-import PageAmbientBackground from '../components/PageAmbientBackground';
-import FooterSection from '../components/sections/FooterSection';
+import { Card } from '../components/ui/card';
 import { developments } from '../../lib/data';
 
 export const metadata: Metadata = {
@@ -44,9 +42,6 @@ const philosophy = [
 export default function AboutPage() {
   return (
     <main className="about-page">
-      <Navbar />
-      <PageAmbientBackground />
-
       <section className="about-hero">
         <div className="about-hero-inner">
           <Reveal className="about-hero-copy">
@@ -74,6 +69,7 @@ export default function AboutPage() {
           <Reveal className="about-hero-art" delay={0.12}>
             <span className="about-stamp about-stamp-top">EST. 2011</span>
             <LoadingImage
+              shellClassName="about-primary-photo"
               src={developments[3].image}
               alt="Boulevard01 Grand 15 residential tower"
               width={900}
@@ -83,12 +79,14 @@ export default function AboutPage() {
             />
             <div className="about-inset-image">
               <LoadingImage
+                shellClassName="about-inset-photo"
                 src={developments[0].image}
                 alt="Boulevard01 Grand X mixed-use development"
                 width={440}
                 height={330}
                 unoptimized
               />
+              <span className="about-photo-caption">GRAND X · LAHORE</span>
             </div>
             <span className="about-stamp about-stamp-bottom">
               500+ UNITS DELIVERED
@@ -128,44 +126,48 @@ export default function AboutPage() {
             <h2>The path to prominence.</h2>
           </Reveal>
           <div className="about-timeline">
-            <Reveal className="about-milestone">
-              <div>
-                <span>2011 — 2016</span>
-                <h3>LAYING THE FOUNDATION</h3>
-                <p>
-                  Boulevard01 established its delivery record and earned the
-                  confidence of investors through quality, transparency, and
-                  trust.
-                </p>
-              </div>
-              <LoadingImage
-                src={developments[1].image}
-                alt="A Boulevard01 development at dusk"
-                width={800}
-                height={520}
-                unoptimized
-              />
+            <Reveal className="about-milestone-reveal">
+              <Card className="about-milestone">
+                <div>
+                  <span>2011 — 2016</span>
+                  <h3>LAYING THE FOUNDATION</h3>
+                  <p>
+                    Boulevard01 established its delivery record and earned the
+                    confidence of investors through quality, transparency, and
+                    trust.
+                  </p>
+                </div>
+                <LoadingImage
+                  src={developments[1].image}
+                  alt="A Boulevard01 development at dusk"
+                  width={800}
+                  height={520}
+                  unoptimized
+                />
+              </Card>
             </Reveal>
             <Reveal
-              className="about-milestone about-milestone-reverse"
+              className="about-milestone-reveal"
               delay={0.08}
             >
-              <LoadingImage
-                src={developments[2].image}
-                alt="Contemporary Boulevard01 residential architecture"
-                width={800}
-                height={520}
-                unoptimized
-              />
-              <div>
-                <span>2017 — 2026</span>
-                <h3>SHAPING THE SKYLINE</h3>
-                <p>
-                  Our ambition grew into smartly planned towers with
-                  contemporary architecture, efficient layouts, and strong
-                  investment value.
-                </p>
-              </div>
+              <Card className="about-milestone about-milestone-reverse">
+                <LoadingImage
+                  src={developments[2].image}
+                  alt="Contemporary Boulevard01 residential architecture"
+                  width={800}
+                  height={520}
+                  unoptimized
+                />
+                <div>
+                  <span>2017 — 2026</span>
+                  <h3>SHAPING THE SKYLINE</h3>
+                  <p>
+                    Our ambition grew into smartly planned towers with
+                    contemporary architecture, efficient layouts, and strong
+                    investment value.
+                  </p>
+                </div>
+              </Card>
             </Reveal>
           </div>
         </div>
@@ -179,33 +181,37 @@ export default function AboutPage() {
             ['15', 'SUCCESSFUL PROJECTS'],
             ['100%', 'ON-TIME DELIVERY'],
           ].map(([value, label]) => (
-            <div className="about-stat" key={label}>
+            <Card className="about-stat" key={label}>
               <strong>{value}</strong>
               <span>{label}</span>
-            </div>
+            </Card>
           ))}
         </div>
       </section>
 
       <section className="about-purpose section-wrap">
-        <Reveal className="about-purpose-card">
-          <span className="about-card-index">01</span>
-          <Compass aria-hidden="true" />
-          <span className="eyebrow">OUR MISSION</span>
-          <p>
-            To create thoughtfully designed developments that combine quality
-            construction, strategic locations, transparent dealings, and lasting
-            investment value.
-          </p>
+        <Reveal className="about-purpose-reveal">
+          <Card className="about-purpose-card">
+            <span className="about-card-index">01</span>
+            <Compass aria-hidden="true" />
+            <span className="eyebrow">OUR MISSION</span>
+            <p>
+              To create thoughtfully designed developments that combine quality
+              construction, strategic locations, transparent dealings, and lasting
+              investment value.
+            </p>
+          </Card>
         </Reveal>
-        <Reveal className="about-purpose-card" delay={0.1}>
-          <span className="about-card-index">02</span>
-          <Eye aria-hidden="true" />
-          <span className="eyebrow">OUR VISION</span>
-          <p>
-            To shape destinations that elevate lifestyles, strengthen
-            communities, and create enduring value for generations.
-          </p>
+        <Reveal className="about-purpose-reveal" delay={0.1}>
+          <Card className="about-purpose-card">
+            <span className="about-card-index">02</span>
+            <Eye aria-hidden="true" />
+            <span className="eyebrow">OUR VISION</span>
+            <p>
+              To shape destinations that elevate lifestyles, strengthen
+              communities, and create enduring value for generations.
+            </p>
+          </Card>
         </Reveal>
       </section>
 
@@ -218,13 +224,15 @@ export default function AboutPage() {
           <div className="about-philosophy-grid">
             {philosophy.map(([title, text], index) => (
               <Reveal
-                className="about-philosophy-item"
+                className="about-philosophy-reveal"
                 key={title}
                 delay={index * 0.035}
               >
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+                <Card className="about-philosophy-item">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </Card>
               </Reveal>
             ))}
           </div>
@@ -236,27 +244,31 @@ export default function AboutPage() {
           <span className="eyebrow">THE PEOPLE BEHIND THE PROMISE</span>
           <h2>A team built around trust.</h2>
         </Reveal>
-        <Reveal className="about-founder-card" delay={0.08}>
-          <LoadingImage
-            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1100&q=85"
-            alt="Boulevard01 founder in a modern office"
-            width={720}
-            height={900}
-            unoptimized
-          />
-          <div>
-            <span>CEO & FOUNDER</span>
-            <h3>M. Hammad Shams</h3>
-          </div>
+        <Reveal className="about-founder-reveal" delay={0.08}>
+          <Card className="about-founder-card">
+            <LoadingImage
+              src="https://boulevard01.com/new-design/wp-content/themes/boulevard01/public/images/ceo.jpg"
+              alt="Boulevard01 founder in a modern office"
+              width={720}
+              height={900}
+              unoptimized
+            />
+            <div>
+              <span>CEO & FOUNDER</span>
+              <h3>M. Hammad Shams</h3>
+            </div>
+          </Card>
         </Reveal>
-        <Reveal className="about-team-note" delay={0.14}>
-          <span className="about-team-monogram">B01</span>
-          <span className="eyebrow">BOULEVARD01</span>
-          <h3>Built by people who deliver.</h3>
-          <p>
-            Our teams bring together development, design, sales, and client care
-            around one promise.
-          </p>
+        <Reveal className="about-team-note-reveal" delay={0.14}>
+          <Card className="about-team-note">
+            <span className="about-team-monogram">B01</span>
+            <span className="eyebrow">BOULEVARD01</span>
+            <h3>Built by people who deliver.</h3>
+            <p>
+              Our teams bring together development, design, sales, and client care
+              around one promise.
+            </p>
+          </Card>
         </Reveal>
       </section>
 
@@ -288,7 +300,6 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
-      <FooterSection />
     </main>
   );
 }

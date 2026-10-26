@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import Reveal from '../Reveal';
+import { Card } from '../ui/card';
 
 const icons: LucideIcon[] = [
   Sparkles,
@@ -51,12 +52,14 @@ export default function AmenitiesSection() {
         {amenities.map((amenity, index) => {
           const Icon = icons[index];
           return (
-            <Reveal className="amenity-tile" key={amenity} delay={index * 0.04}>
-              <span className="amenity-icon">
-                <Icon size={19} strokeWidth={1.5} />
-              </span>
-              <span>{amenity}</span>
-              <span className="amenity-index">0{index + 1}</span>
+            <Reveal className="amenity-reveal" key={amenity} delay={index * 0.04}>
+              <Card className="amenity-tile">
+                <span className="amenity-icon">
+                  <Icon size={19} strokeWidth={1.5} />
+                </span>
+                <span>{amenity}</span>
+                <span className="amenity-index">0{index + 1}</span>
+              </Card>
             </Reveal>
           );
         })}

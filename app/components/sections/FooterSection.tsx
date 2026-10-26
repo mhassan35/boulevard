@@ -46,7 +46,7 @@ export default function FooterSection() {
           <Link className="footer-link" href="/about">
             About Us
           </Link>
-          <Link className="footer-link" href="/#contact">
+          <Link className="footer-link" href="/#inquiry">
             Contact Us
           </Link>
         </div>

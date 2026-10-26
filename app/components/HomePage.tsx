@@ -1,4 +1,3 @@
-import Navbar from './Navbar';
 import HeroSection from './sections/HeroSection';
 import TrustSection from './sections/TrustSection';
 import DevelopmentsSection from './sections/DevelopmentsSection';
@@ -9,13 +8,11 @@ import InquirySection from './sections/InquirySection';
 import LocationSection from './sections/LocationSection';
 import TestimonialsSection from './sections/TestimonialsSection';
 import ClosingSection from './sections/ClosingSection';
-import FooterSection from './sections/FooterSection';
 import SectionGradient from './SectionGradient';
 
 export default function HomePage() {
   return (
     <main className="home-page">
-      <Navbar />
       <HeroSection />
       <div className="landing-content">
         <SectionGradient />
@@ -28,7 +25,6 @@ export default function HomePage() {
         <LocationSection />
         <InquirySection />
         <ClosingSection />
-        <FooterSection />
       </div>
     </main>
   );

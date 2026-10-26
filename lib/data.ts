@@ -13,7 +13,7 @@ export const navigation = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'All Projects', href: '/projects' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', href: '/#inquiry' },
 ];
 
 export const developments = [

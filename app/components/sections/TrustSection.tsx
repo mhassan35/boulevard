@@ -1,5 +1,6 @@
 import LoadingImage from '../LoadingImage';
 import Reveal from '../Reveal';
+import { Card } from '../ui/card';
 
 const metrics = [
   ['9+', 'Years of excellence'],
@@ -54,9 +55,11 @@ export default function TrustSection() {
       </div>
       <div className="trust-metrics" aria-label="Boulevard at a glance">
         {metrics.map(([value, label]) => (
-          <Reveal className="metric-card" key={label}>
-            <strong>{value}</strong>
-            <span>{label}</span>
+          <Reveal className="metric-reveal" key={label}>
+            <Card className="metric-card">
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </Card>
           </Reveal>
         ))}
       </div>

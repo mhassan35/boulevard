@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import Reveal from '../Reveal';
+import { Card } from '../ui/card';
 import { reasons } from '../../../lib/data';
 
 export default function WhyBoulevardSection() {
@@ -27,13 +28,15 @@ export default function WhyBoulevardSection() {
         <div className="reason-grid">
           {reasons.map((reason, index) => (
             <Reveal
-              className="reason-card"
+              className="reason-reveal"
               key={reason.title}
               delay={index * 0.06}
             >
-              <span>0{index + 1}</span>
-              <h3>{reason.title}</h3>
-              <p>{reason.text}</p>
+              <Card className="reason-card">
+                <span>0{index + 1}</span>
+                <h3>{reason.title}</h3>
+                <p>{reason.text}</p>
+              </Card>
             </Reveal>
           ))}
         </div>
